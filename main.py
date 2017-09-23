@@ -48,7 +48,7 @@ while running:
             # 'continue' skips enemy turn to next iteration so if mp has run out, allows us to take our turn again
             continue
 
-        player.reduce_mp(cost)
+        player.reduce_mp(spell.cost)
         enemy.take_damage(magic_dmg)
         print(bcolors.OKBLUE + "\n" + spell.name + " deals", str(magic_dmg), "points of damage" + bcolors.ENDC)
 
