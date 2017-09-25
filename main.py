@@ -186,4 +186,21 @@ while running:
 
         elif enemy_choice == 1:
             spell, magic_dmg = enemy.choose_enemy_spell()
-            print("Enemy choose", spell, "damage is", magic_dmg)
+            enemy.reduce_mp(spell.cost)
+
+            if spell.type == "white":
+                enemy.heal(magic_dmg)
+                print(bcolors.OKBLUE + "\n" + spell.name + "heals " + enemy.name + " for", str(magic_dmg), "HP." + bcolors.ENDC)
+            elif spell.type == "black":
+
+                target = random.randrange(0, 3)
+
+                players[target].take_damage(magic_dmg)
+                print(bcolors.OKBLUE + "\n" + enemy.name.replace(" ","") + "'s " + spell.name + " deals", str(magic_dmg), "points of damage to "
+                      + players[target].name.replace(" ", "") + bcolors.ENDC)
+
+                if players[target].get_hp() == 0:
+                    print(players[target].name.replace(" ", "") + " has died.")
+                    del players[player]
+
+            # print("Enemy choose", spell, "damage is", magic_dmg)
